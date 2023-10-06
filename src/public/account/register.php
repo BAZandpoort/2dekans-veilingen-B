@@ -4,6 +4,9 @@ if (isset($_SESSION['user'])) {
   exit();
 }
 
+// Change the user their PHPSESSID every time the user visits the register page in to prevent session fixation attacks.
+session_regenerate_id(true);
+
 $error = $_GET['error'] ?? false;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';

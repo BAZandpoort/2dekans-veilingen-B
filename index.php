@@ -4,6 +4,20 @@ require_once DATABASE . '/connect.php';
 require_once ROUTES;
 require_once LIB . '/util/util.php';
 
+
+// Cookie security
+//ini_set('session.name', PHPSESSID_NAME); // Set a custom PHPSESSID name to prevent any automated attacks dealing with the default PHPSESSID name.
+ini_set('session.use_only_cookies', '1');
+ini_set('session.cookie_httponly', '1');
+ini_set('session.cookie_samesite', 'Strict');
+ini_set('session.use_strict_mode', '1'); 
+/* 
+* session.use_strict_mode prevents session fixation attacks by not accepting uninitialized session IDs sent by the browser, recommended to be enabled by PHP docs .
+* (The code that regenerates the session ID in the login and register page are not needed then I think?) 
+*/
+
+
+
 session_start();
 
 $uri = explode('?', $_SERVER['REQUEST_URI'])[0];

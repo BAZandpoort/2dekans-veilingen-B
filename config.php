@@ -14,6 +14,7 @@ define('COMPONENTS', SRC . '/components');
 define('DATABASE', SRC . '/database');
 define('LIB', SRC . '/lib');
 define('PUBLIC_S', SRC . '/public');
+define('PHPSESSID_NAME', 'rfg8bp0u4qmckt6ah25s1frqr4'); // Set a custom PHPSESSID name to prevent any automated attacks dealing with the default PHPSESSID name
 
 define('ADMIN', 'admin');
 define('MEMBER', 'member');
