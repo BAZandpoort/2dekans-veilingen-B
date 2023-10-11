@@ -88,13 +88,6 @@ $routes = [
     'nav' => true,
     'footer' => true,
   ],
-  '/dashboard-template' => [
-    'view' => 'member/dashboard-template.php',
-    'title' => 'Dashboard Template',
-    'auth_roles' => ['member'],
-    'nav' => false,
-    'footer' => false,
-  ],
   '/dashboard/see-translations' => [
     'view' => 'member/see-translations.php',
     'title' => 'See translations',

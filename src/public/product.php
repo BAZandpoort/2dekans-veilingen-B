@@ -16,8 +16,6 @@
     WHERE users.id=user_profile.userid
     AND users.id = ?";
     $seller = fetch($query2,['type' => 'i', 'value' => $id]);
-   
-
 ?>
 <div class = "flex">
     <div class="flex-[1.1] rounded-3xl h-1/2">
