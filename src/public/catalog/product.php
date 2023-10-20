@@ -59,8 +59,13 @@ if (isset($_SESSION["user"])){
     </div>
     <div class="flex flex-row justify-center gap-8 md:gap-24 pb-8">
       <div class="flex flex-col items-center">
-        <p class="uppercase text-xs opacity-40 font-bold">Huidig bod</p>
+        <p class="uppercase text-xs opacity-40 font-bold">Jouw bod</p>
         <p id="currentBid" class="font-semibold text-xl">€ <?= $lastBid ?></p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <p class="uppercase text-xs opacity-40 font-bold">Hoogste bod</p>
+        <p id="highestBid" class="font-semibold text-xl">€ 939359</p>
       </div>
       
       <div class="flex flex-col items-center">
@@ -123,6 +128,74 @@ if (isset($_SESSION["user"])){
   </div>
 </form>
 
+<!-- Bidding table -->
+<h1 class="text-2xl font-semibold">Most recent bids</h1>
+
+
+
+<div class="overflow-x-auto">
+  <table class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Job</th>
+        <th>Favorite Color</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <?php
+          $query = 'SELECT * FROM `bids`  
+            WHERE productid = '.$productId.'
+            ORDER BY `bids`.`bidOfferedAt` DESC
+            ';
+          $allBids = fetch($query);
+
+          foreach ($allBids as $bid) {
+            echo '
+              <tr>
+                <td>
+                  <div class="flex items-center space-x-3">
+                    <div class="avatar">
+                      <div class="mask mask-squircle w-12 h-12">
+                        <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                      </div>
+                    </div>
+                    <div>
+                      <div class="font-bold">Hart Hagerty</div>
+                      <div class="text-sm opacity-50">United States</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  Zemlak, Daniel and Leannon
+                  <br/>
+                  <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                </td>
+                <td>Purple</td>
+                <th>
+                  <button class="btn btn-ghost btn-xs">details</button>
+                </th>
+              </tr>
+            ';
+          }
+        ?>
+      
+    </tbody>
+    <!-- foot -->
+    <tfoot>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Job</th>
+        <th>Favorite Color</th>
+      </tr>
+    </tfoot>
+    
+  </table>
+</div>
 
 <script>
   productCountdown("<?php echo $productData['endDate']; ?>")
